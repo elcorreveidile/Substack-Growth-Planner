@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substack Growth Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        button.secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        button.secondary:hover {
+            background: #d0d0d0;
+        }
+
+        button.danger {
+            background: #ff6b6b;
+        }
+
+        button.danger:hover {
+            background: #ee5a5a;
+        }
+
+        .item-list {
+            margin-top: 15px;
+        }
+
+        .item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-meta {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .metric {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .priority-high {
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .priority-medium {
+            border-left: 4px solid #ffd93d;
+        }
+
+        .priority-low {
+            border-left: 4px solid #6bcb77;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 Substack Growth Planner</h1>
+            <p>Organiza tu estrategia de crecimiento</p>
+        </header>
+
+        <!-- Métricas Actuales -->
+        <div class="grid">
+            <div class="card full-width">
+                <h2>📊 Métricas Actuales</h2>
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-value" id="subscribers">0</div>
+                        <div class="metric-label">Suscriptores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" id="openRate">0%</div>
+                        <div class="metric-label">Tasa de Apertura</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" id="goalProgress">0%</div>
+                        <div class="metric-label">Progreso del Objetivo</div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <div class="input-group">
+                        <label>Actualizar Métricas</label>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                            <input type="number" id="newSubscribers" placeholder="Suscriptores">
+                            <input type="number" id="newOpenRate" placeholder="Tasa apertura %">
+                            <input type="number" id="goalTarget" placeholder="Objetivo suscriptores">
+                        </div>
+                    </div>
+                    <button onclick="updateMetrics()">Actualizar Métricas</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- Objetivos -->
+            <div class="card">
+                <h2>🎯 Objetivos</h2>
+                <div class="input-group">
+                    <input type="text" id="goalTitle" placeholder="Nuevo objetivo">
+                </div>
+                <div class="input-group">
+                    <select id="goalPriority">
+                        <option value="high">Alta prioridad</option>
+                        <option value="medium">Media prioridad</option>
+                        <option value="low">Baja prioridad</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="date" id="goalDeadline">
+                </div>
+                <button onclick="addGoal()">Agregar Objetivo</button>
+                <div class="item-list" id="goalsList"></div>
+            </div>
+
+            <!-- Ideas de Contenido -->
+            <div class="card">
+                <h2>💡 Ideas de Contenido</h2>
+                <div class="input-group">
+                    <input type="text" id="contentTitle" placeholder="Título del post">
+                </div>
+                <div class="input-group">
+                    <textarea id="contentIdea" placeholder="Describe la idea..."></textarea>
+                </div>
+                <div class="input-group">
+                    <select id="contentType">
+                        <option value="free">Post Gratuito</option>
+                        <option value="paid">Post Premium</option>
+                        <option value="thread">Hilo</option>
+                    </select>
+                </div>
+                <button onclick="addContentIdea()">Agregar Idea</button>
+                <div class="item-list" id="contentList"></div>
+            </div>
+
+            <!-- Estrategias de Crecimiento -->
+            <div class="card">
+                <h2>🚀 Estrategias de Crecimiento</h2>
+                <div class="input-group">
+                    <input type="text" id="strategyTitle" placeholder="Estrategia">
+                </div>
+                <div class="input-group">
+                    <textarea id="strategyDesc" placeholder="Detalles de la estrategia..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Canales:</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" value="Twitter"> Twitter
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" value="LinkedIn"> LinkedIn
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" value="Instagram"> Instagram
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" value="Reddit"> Reddit
+                        </div>
+                    </div>
+                </div>
+                <button onclick="addStrategy()">Agregar Estrategia</button>
+                <div class="item-list" id="strategyList"></div>
+            </div>
+
+            <!-- Calendario de Publicaciones -->
+            <div class="card">
+                <h2>📅 Calendario</h2>
+                <div class="input-group">
+                    <input type="text" id="eventTitle" placeholder="Título del post/evento">
+                </div>
+                <div class="input-group">
+                    <input type="date" id="eventDate">
+                </div>
+                <div class="input-group">
+                    <select id="eventType">
+                        <option value="post">Publicación</option>
+                        <option value="promo">Promoción</option>
+                        <option value="collab">Colaboración</option>
+                    </select>
+                </div>
+                <button onclick="addEvent()">Agregar al Calendario</button>
+                <div class="item-list" id="calendarList"></div>
+            </div>
+
+            <!-- Lista de Tareas -->
+            <div class="card">
+                <h2>✅ Tareas Pendientes</h2>
+                <div class="input-group">
+                    <input type="text" id="taskTitle" placeholder="Nueva tarea">
+                </div>
+                <button onclick="addTask()">Agregar Tarea</button>
+                <div class="item-list" id="taskList"></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="taskProgress" style="width: 0%">0%</div>
+                </div>
+            </div>
+
+            <!-- Notas -->
+            <div class="card">
+                <h2>📝 Notas</h2>
+                <div class="input-group">
+                    <textarea id="notesArea" placeholder="Escribe tus notas y observaciones aquí..." style="min-height: 200px;"></textarea>
+                </div>
+                <button onclick="saveNotes()">Guardar Notas</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado de la aplicación
+        let state = {
+            metrics: { subscribers: 0, openRate: 0, goalTarget: 1000 },
+            goals: [],
+            content: [],
+            strategies: [],
+            calendar: [],
+            tasks: [],
+            notes: ''
+        };
+
+        // Cargar datos guardados
+        function loadState() {
+            const saved = localStorage.getItem('substackPlanner');
+            if (saved) {
+                state = JSON.parse(saved);
+                updateUI();
+            }
+        }
+
+        // Guardar estado
+        function saveState() {
+            localStorage.setItem('substackPlanner', JSON.stringify(state));
+        }
+
+        // Actualizar métricas
+        function updateMetrics() {
+            const subs = parseInt(document.getElementById('newSubscribers').value) || 0;
+            const openRate = parseFloat(document.getElementById('newOpenRate').value) || 0;
+            const goal = parseInt(document.getElementById('goalTarget').value) || state.metrics.goalTarget;
+
+            state.metrics = { subscribers: subs, openRate: openRate, goalTarget: goal };
+            saveState();
+            updateUI();
+        }
+
+        // Agregar objetivo
+        function addGoal() {
+            const title = document.getElementById('goalTitle').value;
+            const priority = document.getElementById('goalPriority').value;
+            const deadline = document.getElementById('goalDeadline').value;
+
+            if (!title) return alert('Ingresa un título para el objetivo');
+
+            state.goals.push({
+                id: Date.now(),
+                title,
+                priority,
+                deadline,
+                completed: false
+            });
+
+            document.getElementById('goalTitle').value = '';
+            document.getElementById('goalDeadline').value = '';
+            saveState();
+            updateUI();
+        }
+
+        // Agregar idea de contenido
+        function addContentIdea() {
+            const title = document.getElementById('contentTitle').value;
+            const idea = document.getElementById('contentIdea').value;
+            const type = document.getElementById('contentType').value;
+
+            if (!title) return alert('Ingresa un título');
+
+            state.content.push({
+                id: Date.now(),
+                title,
+                idea,
+                type,
+                completed: false
+            });
+
+            document.getElementById('contentTitle').value = '';
+            document.getElementById('contentIdea').value = '';
+            saveState();
+            updateUI();
+        }
+
+        // Agregar estrategia
+        function addStrategy() {
+            const title = document.getElementById('strategyTitle').value;
+            const desc = document.getElementById('strategyDesc').value;
+            const channels = Array.from(document.querySelectorAll('.checkbox-item input:checked')).map(cb => cb.value);
+
+            if (!title) return alert('Ingresa un título');
+
+            state.strategies.push({
+                id: Date.now(),
+                title,
+                desc,
+                channels,
+                completed: false
+            });
+
+            document.getElementById('strategyTitle').value = '';
+            document.getElementById('strategyDesc').value = '';
+            document.querySelectorAll('.checkbox-item input').forEach(cb => cb.checked = false);
+            saveState();
+            updateUI();
+        }
+
+        // Agregar evento al calendario
+        function addEvent() {
+            const title = document.getElementById('eventTitle').value;
+            const date = document.getElementById('eventDate').value;
+            const type = document.getElementById('eventType').value;
+
+            if (!title || !date) return alert('Completa todos los campos');
+
+            state.calendar.push({
+                id: Date.now(),
+                title,
+                date,
+                type,
+                completed: false
+            });
+
+            document.getElementById('eventTitle').value = '';
+            document.getElementById('eventDate').value = '';
+            saveState();
+            updateUI();
+        }
+
+        // Agregar tarea
+        function addTask() {
+            const title = document.getElementById('taskTitle').value;
+
+            if (!title) return alert('Ingresa una tarea');
+
+            state.tasks.push({
+                id: Date.now(),
+                title,
+                completed: false
+            });
+
+            document.getElementById('taskTitle').value = '';
+            saveState();
+            updateUI();
+        }
+
+        // Guardar notas
+        function saveNotes() {
+            state.notes = document.getElementById('notesArea').value;
+            saveState();
+            alert('Notas guardadas');
+        }
+
+        // Toggle completado
+        function toggleComplete(type, id) {
+            const item = state[type].find(i => i.id === id);
+            if (item) {
+                item.completed = !item.completed;
+                saveState();
+                updateUI();
+            }
+        }
+
+        // Eliminar item
+        function deleteItem(type, id) {
+            state[type] = state[type].filter(i => i.id !== id);
+            saveState();
+            updateUI();
+        }
+
+        // Actualizar UI
+        function updateUI() {
+            // Métricas
+            document.getElementById('subscribers').textContent = state.metrics.subscribers.toLocaleString();
+            document.getElementById('openRate').textContent = state.metrics.openRate + '%';
+            const progress = Math.min(100, Math.round((state.metrics.subscribers / state.metrics.goalTarget) * 100));
+            document.getElementById('goalProgress').textContent = progress + '%';
+
+            // Objetivos
+            const goalsList = document.getElementById('goalsList');
+            goalsList.innerHTML = state.goals.map(g => `
+                <div class="item priority-${g.priority} ${g.completed ? 'completed' : ''}">
+                    <div class="item-content">
+                        <div class="item-title" style="${g.completed ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${g.title}</div>
+                        <div class="item-meta">📅 ${g.deadline || 'Sin fecha'}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="secondary" onclick="toggleComplete('goals', ${g.id})">${g.completed ? '↩️' : '✅'}</button>
+                        <button class="danger" onclick="deleteItem('goals', ${g.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Contenido
+            const contentList = document.getElementById('contentList');
+            contentList.innerHTML = state.content.map(c => `
+                <div class="item ${c.completed ? 'completed' : ''}">
+                    <div class="item-content">
+                        <div class="item-title" style="${c.completed ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${c.title}</div>
+                        <div class="item-meta">${c.idea} • ${c.type}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="secondary" onclick="toggleComplete('content', ${c.id})">${c.completed ? '↩️' : '✅'}</button>
+                        <button class="danger" onclick="deleteItem('content', ${c.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Estrategias
+            const strategyList = document.getElementById('strategyList');
+            strategyList.innerHTML = state.strategies.map(s => `
+                <div class="item ${s.completed ? 'completed' : ''}">
+                    <div class="item-content">
+                        <div class="item-title" style="${s.completed ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${s.title}</div>
+                        <div class="item-meta">${s.desc} • ${s.channels.join(', ') || 'Sin canales'}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="secondary" onclick="toggleComplete('strategies', ${s.id})">${s.completed ? '↩️' : '✅'}</button>
+                        <button class="danger" onclick="deleteItem('strategies', ${s.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Calendario
+            const calendarList = document.getElementById('calendarList');
+            calendarList.innerHTML = state.calendar.sort((a, b) => new Date(a.date) - new Date(b.date)).map(c => `
+                <div class="item ${c.completed ? 'completed' : ''}">
+                    <div class="item-content">
+                        <div class="item-title" style="${c.completed ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${c.title}</div>
+                        <div class="item-meta">📅 ${c.date} • ${c.type}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="secondary" onclick="toggleComplete('calendar', ${c.id})">${c.completed ? '↩️' : '✅'}</button>
+                        <button class="danger" onclick="deleteItem('calendar', ${c.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Tareas
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = state.tasks.map(t => `
+                <div class="item ${t.completed ? 'completed' : ''}">
+                    <div class="item-content">
+                        <div class="item-title" style="${t.completed ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${t.title}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="secondary" onclick="toggleComplete('tasks', ${t.id})">${t.completed ? '↩️' : '✅'}</button>
+                        <button class="danger" onclick="deleteItem('tasks', ${t.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Progreso de tareas
+            const completedTasks = state.tasks.filter(t => t.completed).length;
+            const taskProgress = state.tasks.length > 0 ? Math.round((completedTasks / state.tasks.length) * 100) : 0;
+            document.getElementById('taskProgress').style.width = taskProgress + '%';
+            document.getElementById('taskProgress').textContent = taskProgress + '%';
+
+            // Notas
+            document.getElementById('notesArea').value = state.notes;
+        }
+
+        // Inicializar
+        loadState();
+    </script>
+</body>
+</html>
