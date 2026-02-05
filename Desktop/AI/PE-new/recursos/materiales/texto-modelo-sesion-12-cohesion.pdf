@@ -1,0 +1,60 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 904 >>
+stream
+BT
+/F1 16 Tf
+72 760 Td
+(Texto modelo: Coherencia y cohesion) Tj
+/F1 11 Tf
+0 -24 Td
+(El proyecto de escritura colectiva comenzo en febrero. Esta iniciativa pretendia que el) Tj
+0 -14 Td
+(grupo aprendiera a revisar textos ajenos con respeto y precision.) Tj
+0 -14 Td
+0 -14 Td
+(La primera fase consistio en definir un tema comun y seleccionar fuentes. Dichas fuentes) Tj
+0 -14 Td
+(se evaluaron segun su fiabilidad, y solo se mantuvieron aquellas que aportaban datos) Tj
+0 -14 Td
+(verificables.) Tj
+0 -14 Td
+0 -14 Td
+(En la segunda fase, el equipo redacto un borrador y lo compartio en linea. Ese documento) Tj
+0 -14 Td
+(se corrigio en varias rondas, y cada revision incorporo sugerencias concretas.) Tj
+0 -14 Td
+0 -14 Td
+(Finalmente, el texto definitivo se publico con una licencia abierta. De este modo, el) Tj
+0 -14 Td
+(aprendizaje quedo reflejado en un producto real y coherente.) Tj
+0 -14 Td
+0 -14 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1266
+%%EOF

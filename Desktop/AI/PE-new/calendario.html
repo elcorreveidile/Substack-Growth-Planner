@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario | Producción Escrita C2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        .calendar-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        .month-calendar {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+        .month-header {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-md);
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .day-header {
+            padding: var(--spacing-sm);
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-light);
+            background: var(--bg-light);
+        }
+        .day-cell {
+            padding: var(--spacing-sm);
+            min-height: 70px;
+            border: 1px solid var(--border-color);
+            font-size: 0.875rem;
+        }
+        .day-cell.other-month {
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+        .day-cell.has-session {
+            background: rgba(26, 54, 93, 0.1);
+        }
+        .day-cell.is-exam {
+            background: rgba(197, 48, 48, 0.1);
+        }
+        .day-cell.is-workshop {
+            background: rgba(214, 158, 46, 0.1);
+        }
+        .day-number {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .day-event {
+            font-size: 0.6875rem;
+            padding: 2px 4px;
+            border-radius: 3px;
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .day-event.session {
+            background: var(--primary-color);
+            color: white;
+        }
+        .day-event.workshop {
+            background: var(--accent-color);
+            color: var(--primary-dark);
+        }
+        .day-event.exam {
+            background: var(--secondary-color);
+            color: white;
+        }
+        .legend {
+            display: flex;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-xl);
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 0.875rem;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .session-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .session-item {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-left: 3px solid var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+            background: var(--bg-light);
+        }
+        .session-item.workshop {
+            border-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <span>Centro de Lenguas Modernas - Universidad de Granada</span>
+                <div class="header-top-links">
+                    <a href="recursos/index.html">Recursos</a>
+                    <a href="calendario.html" class="active">Calendario</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">C2</div>
+                    <div class="logo-text">
+                        <span class="logo-title">Producción Escrita</span>
+                        <span class="logo-subtitle">CLM - Universidad de Granada</span>
+                    </div>
+                </a>
+                <nav class="nav-main" id="nav-main">
+                    <a href="index.html">Inicio</a>
+                    <a href="sesiones/index.html">Sesiones</a>
+                    <a href="temas/index.html">Temas</a>
+                    <a href="talleres/index.html">Talleres</a>
+                    <a href="recursos/index.html">Recursos</a>
+                </nav>
+                <div class="nav-auth"></div>
+                <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: var(--spacing-2xl) 0;">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Febrero - Mayo 2026</span>
+                <h1>Calendario del Curso</h1>
+                <p class="hero-description">
+                    27 sesiones de 90 minutos, martes y jueves. Examen parcial: jueves 26 de marzo. Examen final: jueves 21 de mayo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <!-- Leyenda -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--primary-color);"></div>
+                    <span>Sesión regular</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--accent-color);"></div>
+                    <span>Taller</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--secondary-color);"></div>
+                    <span>Examen</span>
+                </div>
+            </div>
+
+            <!-- Información del curso -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); text-align: center;">
+                        <div>
+                            <strong style="font-size: 1.5rem; color: var(--primary-color);">27</strong>
+                            <p class="text-secondary mb-0">Sesiones totales</p>
+                        </div>
+                        <div>
+                            <strong style="font-size: 1.5rem; color: var(--primary-color);">90 min</strong>
+                            <p class="text-secondary mb-0">Por sesión</p>
+                        </div>
+                        <div>
+                            <strong style="font-size: 1.5rem; color: var(--primary-color);">Mar / Jue</strong>
+                            <p class="text-secondary mb-0">Días de clase</p>
+                        </div>
+                        <div>
+                            <strong style="font-size: 1.5rem; color: var(--secondary-color);">21/05/2026</strong>
+                            <p class="text-secondary mb-0">Examen final</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendarios mensuales -->
+            <div class="calendar-container" id="calendars">
+                <!-- Se generan con JavaScript -->
+            </div>
+
+            <!-- Lista de sesiones -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3 style="margin: 0;">Lista completa de sesiones</h3>
+                </div>
+                <div class="card-body session-list" id="session-list">
+                    <!-- Se genera con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding-top: 0;">
+                <span>&copy; 2026 Javier Benítez Láinez | CLM - Universidad de Granada</span>
+                <a href="mailto:benitezl@go.ugr.es" style="color: rgba(255,255,255,0.7);">benitezl@go.ugr.es</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sessions = PE.CourseData.sessions;
+            const months = [
+                { name: 'Febrero 2026', year: 2026, month: 1, startDay: 0, days: 28 },
+                { name: 'Marzo 2026', year: 2026, month: 2, startDay: 0, days: 31 },
+                { name: 'Abril 2026', year: 2026, month: 3, startDay: 3, days: 30 },
+                { name: 'Mayo 2026', year: 2026, month: 4, startDay: 5, days: 31 }
+            ];
+
+            const dayNames = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+            const exams = {
+                '2026-03-26': 'EXAMEN PARCIAL',
+                '2026-05-21': 'EXAMEN FINAL'
+            };
+
+            // Calcular día de inicio para cada mes
+            function getFirstDayOfMonth(year, month) {
+                const date = new Date(year, month, 1);
+                return (date.getDay() + 6) % 7; // Lunes = 0
+            }
+
+            // Generar calendarios
+            const calendarsContainer = document.getElementById('calendars');
+
+            months.forEach(m => {
+                const startDay = getFirstDayOfMonth(m.year, m.month);
+                let html = `
+                    <div class="month-calendar">
+                        <div class="month-header">${m.name}</div>
+                        <div class="month-grid">
+                            ${dayNames.map(d => `<div class="day-header">${d}</div>`).join('')}
+                `;
+
+                // Días vacíos al inicio
+                for (let i = 0; i < startDay; i++) {
+                    html += '<div class="day-cell other-month"></div>';
+                }
+
+                // Días del mes
+                for (let day = 1; day <= m.days; day++) {
+                    const dateStr = `2026-${String(m.month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const session = sessions.find(s => s.date === dateStr);
+                    const examLabel = exams[dateStr];
+                    const isExam = Boolean(examLabel);
+                    const isWorkshop = session && session.theme === 'taller';
+
+                    let cellClass = 'day-cell';
+                    if (session) cellClass += isWorkshop ? ' is-workshop' : ' has-session';
+                    if (isExam) cellClass += ' is-exam';
+
+                    html += `<div class="${cellClass}">`;
+                    html += `<div class="day-number">${day}</div>`;
+
+                    if (session) {
+                        const eventClass = isWorkshop ? 'workshop' : 'session';
+                        html += `<div class="day-event ${eventClass}" title="${session.title}">S${session.id}</div>`;
+                    }
+                    if (isExam) {
+                        html += `<div class="day-event exam">${examLabel}</div>`;
+                    }
+
+                    html += '</div>';
+                }
+
+                // Días vacíos al final
+                const totalCells = startDay + m.days;
+                const remainingCells = (7 - (totalCells % 7)) % 7;
+                for (let i = 0; i < remainingCells; i++) {
+                    html += '<div class="day-cell other-month"></div>';
+                }
+
+                html += '</div></div>';
+                calendarsContainer.innerHTML += html;
+            });
+
+            // Lista de sesiones
+            const sessionList = document.getElementById('session-list');
+            sessionList.innerHTML = sessions.map(s => {
+                const isWorkshop = s.theme === 'taller';
+                return `
+                    <div class="session-item ${isWorkshop ? 'workshop' : ''}">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>Sesión ${s.id}:</strong> ${s.title}
+                                <br><span class="text-secondary">${s.day}, ${PE.Utils.formatDate(s.date, 'long')}</span>
+                            </div>
+                            <a href="sesiones/sesion-${String(s.id).padStart(2, '0')}.html" class="btn btn-sm btn-outline">Ver</a>
+                        </div>
+                    </div>
+                `;
+            }).join('') + `
+                <div class="session-item" style="border-color: var(--secondary-color); background: rgba(197, 48, 48, 0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--secondary-color);">EXAMEN PARCIAL</strong>
+                            <br><span class="text-secondary">Jueves, 26 de marzo de 2026</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="session-item" style="border-color: var(--secondary-color); background: rgba(197, 48, 48, 0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--secondary-color);">EXAMEN FINAL</strong>
+                            <br><span class="text-secondary">Jueves, 21 de mayo de 2026</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

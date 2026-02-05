@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 905 >>
+stream
+BT
+/F1 16 Tf
+72 760 Td
+(Texto modelo: Desarrollo y cierre de conferencia) Tj
+/F1 11 Tf
+0 -24 Td
+(En el desarrollo hemos visto que los algoritmos aprenden a partir de datos historicos. Por) Tj
+0 -14 Td
+(eso, cuando los datos contienen sesgos, el sistema los reproduce. Un ejemplo es la) Tj
+0 -14 Td
+(recomendacion de contenidos que refuerza ideas previas y reduce la diversidad.) Tj
+0 -14 Td
+0 -14 Td
+(Sin embargo, existen estrategias de mitigacion: auditorias externas, explicaciones) Tj
+0 -14 Td
+(accesibles y limites en el uso de perfiles. Estas medidas permiten equilibrar innovacion y) Tj
+0 -14 Td
+(responsabilidad.) Tj
+0 -14 Td
+0 -14 Td
+(Para concluir, la tecnologia no es neutral; depende de como se diseña y se aplica. Si) Tj
+0 -14 Td
+(exigimos transparencia y responsabilidad, los sistemas de recomendacion pueden ser una) Tj
+0 -14 Td
+(herramienta valiosa. Muchas gracias.) Tj
+0 -14 Td
+0 -14 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1267
+%%EOF

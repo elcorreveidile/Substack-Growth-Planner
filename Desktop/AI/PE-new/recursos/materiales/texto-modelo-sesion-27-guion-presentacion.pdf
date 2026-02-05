@@ -1,0 +1,58 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 824 >>
+stream
+BT
+/F1 16 Tf
+72 760 Td
+(Texto modelo: Guion de presentacion final) Tj
+/F1 11 Tf
+0 -24 Td
+(Buenos dias. Somos el equipo [nombre] y presentamos nuestro proyecto sobre [tema]. El) Tj
+0 -14 Td
+(objetivo principal es mostrar [objetivo] y explicar por que es relevante para [publico].) Tj
+0 -14 Td
+0 -14 Td
+(En primer lugar, expondremos el contexto y la pregunta que nos guia. A continuacion,) Tj
+0 -14 Td
+(describiremos el proceso de trabajo, las fuentes consultadas y las decisiones de) Tj
+0 -14 Td
+(redaccion.) Tj
+0 -14 Td
+0 -14 Td
+(Despues presentaremos los resultados con dos ejemplos concretos y un breve analisis de) Tj
+0 -14 Td
+(impacto. Por ultimo, cerraremos con las conclusiones y las posibles mejoras.) Tj
+0 -14 Td
+0 -14 Td
+(Muchas gracias por su atencion. Quedamos disponibles para preguntas.) Tj
+0 -14 Td
+0 -14 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1186
+%%EOF

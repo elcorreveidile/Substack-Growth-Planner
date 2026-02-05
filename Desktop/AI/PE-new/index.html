@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de Producción Escrita para nivel C2 de español. Desarrolla tus habilidades de escritura académica y profesional.">
+    <title>Producción Escrita C2 | Curso de Escritura Avanzada en Español</title>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <span>Nivel C2 | Febrero - Mayo 2026</span>
+                <div class="header-top-links">
+                    <a href="recursos/index.html">Recursos</a>
+                    <a href="calendario.html">Calendario</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">C2</div>
+                    <div class="logo-text">
+                        <span class="logo-title">Producción Escrita</span>
+                        <span class="logo-subtitle">Español Avanzado</span>
+                    </div>
+                </a>
+
+                <nav class="nav-main" id="nav-main">
+                    <a href="index.html" class="active">Inicio</a>
+                    <div class="dropdown">
+                        <a href="sesiones/index.html">Sesiones</a>
+                        <div class="dropdown-menu">
+                            <a href="sesiones/index.html">Todas las sesiones</a>
+                            <a href="sesiones/sesion-01.html">Sesión actual</a>
+                            <a href="calendario.html">Calendario</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="temas/index.html">Temas</a>
+                        <div class="dropdown-menu">
+                            <a href="temas/tema-01-perfil.html">Escribir un perfil</a>
+                            <a href="temas/tema-02-cartas.html">Cartas formales</a>
+                            <a href="temas/tema-03-creativos.html">Textos creativos</a>
+                            <a href="temas/tema-04-opinion.html">Textos de opinión</a>
+                            <a href="temas/index.html">Ver todos...</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="talleres/index.html">Talleres</a>
+                        <div class="dropdown-menu">
+                            <a href="talleres/taller-01-miniserie.html">Mini serie web</a>
+                            <a href="talleres/taller-02-olvidos.html">Olvidos de Granada</a>
+                            <a href="talleres/taller-03-safari.html">Safari fotográfico</a>
+                            <a href="talleres/taller-04-granada2031.html">Granada 2031</a>
+                        </div>
+                    </div>
+                    <a href="recursos/index.html">Recursos</a>
+                </nav>
+
+                <div class="nav-auth">
+                    <a href="auth/login.html" class="btn btn-outline-white btn-sm">Acceder</a>
+                    <a href="auth/registro.html" class="btn btn-accent btn-sm">Registrarse</a>
+                </div>
+
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Curso 2025-2026</span>
+                <h1>Domina la escritura en español al más alto nivel</h1>
+                <p class="hero-description">
+                    Un curso intensivo de producción escrita diseñado para estudiantes de nivel C2.
+                    Desarrolla competencias avanzadas en escritura académica, profesional y creativa
+                    a través de talleres prácticos y retroalimentación personalizada.
+                </p>
+                <div class="hero-actions">
+                    <a href="auth/registro.html" class="btn btn-accent btn-lg">Comenzar ahora</a>
+                    <a href="sesiones/index.html" class="btn btn-outline-white btn-lg">Ver programa</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">27</span>
+                        <span class="hero-stat-label">Sesiones</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">11</span>
+                        <span class="hero-stat-label">Temas</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">4</span>
+                        <span class="hero-stat-label">Talleres</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">90</span>
+                        <span class="hero-stat-label">Min/sesión</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenidos del curso -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contenidos del curso</h2>
+                <p>Un programa completo para desarrollar todas las competencias de producción escrita en español</p>
+            </div>
+
+            <div class="sessions-grid">
+                <!-- Estrategias -->
+                <div class="card session-card">
+                    <div class="card-body">
+                        <span class="session-number">Contenido 1</span>
+                        <h3 class="session-title">Estrategias: el proceso de escribir</h3>
+                        <p class="text-secondary">Planificación, borrador, revisión y edición. Técnicas para organizar ideas y estructurar textos de manera efectiva.</p>
+                        <div class="session-objectives">
+                            <h4>Aprenderás a:</h4>
+                            <ul>
+                                <li>Planificar textos complejos</li>
+                                <li>Organizar ideas coherentemente</li>
+                                <li>Revisar y editar tu escritura</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Géneros textuales -->
+                <div class="card session-card">
+                    <div class="card-body">
+                        <span class="session-number">Contenido 2</span>
+                        <h3 class="session-title">Géneros textuales</h3>
+                        <p class="text-secondary">Características discursivas de diferentes géneros. Adaptación del estilo según el tipo de texto y su función comunicativa.</p>
+                        <div class="session-objectives">
+                            <h4>Aprenderás a:</h4>
+                            <ul>
+                                <li>Identificar géneros textuales</li>
+                                <li>Adaptar el estilo al género</li>
+                                <li>Respetar convenciones textuales</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fórmulas de tratamiento -->
+                <div class="card session-card">
+                    <div class="card-body">
+                        <span class="session-number">Contenido 3</span>
+                        <h3 class="session-title">Fórmulas de tratamiento</h3>
+                        <p class="text-secondary">Peticiones con distintos grados de formalidad. Uso adecuado del registro según el contexto y el destinatario.</p>
+                        <div class="session-objectives">
+                            <h4>Aprenderás a:</h4>
+                            <ul>
+                                <li>Usar fórmulas formales e informales</li>
+                                <li>Hacer peticiones corteses</li>
+                                <li>Adaptar el registro al contexto</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recursos para intensificar -->
+                <div class="card session-card">
+                    <div class="card-body">
+                        <span class="session-number">Contenido 4</span>
+                        <h3 class="session-title">Recursos para intensificar</h3>
+                        <p class="text-secondary">Expresiones enfáticas, comparaciones y exageraciones. Técnicas retóricas para dar fuerza a tus argumentos.</p>
+                        <div class="session-objectives">
+                            <h4>Aprenderás a:</h4>
+                            <ul>
+                                <li>Usar expresiones enfáticas</li>
+                                <li>Crear comparaciones efectivas</li>
+                                <li>Intensificar argumentos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recursos para atenuar -->
+                <div class="card session-card">
+                    <div class="card-body">
+                        <span class="session-number">Contenido 5</span>
+                        <h3 class="session-title">Recursos para atenuar</h3>
+                        <p class="text-secondary">Modalizadores del discurso. Estrategias de cortesía y suavización para comunicar con diplomacia.</p>
+                        <div class="session-objectives">
+                            <h4>Aprenderás a:</h4>
+                            <ul>
+                                <li>Usar modalizadores efectivamente</li>
+                                <li>Suavizar afirmaciones</li>
+                                <li>Comunicar con diplomacia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conectores -->
+                <div class="card session-card">
+                    <div class="card-body">
+                        <span class="session-number">Contenido 6</span>
+                        <h3 class="session-title">Conectores y marcadores</h3>
+                        <p class="text-secondary">Coherencia y cohesión textual. Uso avanzado de conectores para estructurar argumentos complejos.</p>
+                        <div class="session-objectives">
+                            <h4>Aprenderás a:</h4>
+                            <ul>
+                                <li>Dominar conectores discursivos</li>
+                                <li>Crear cohesión textual</li>
+                                <li>Estructurar argumentos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="sesiones/index.html" class="btn btn-primary btn-lg">Ver programa completo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temas del curso -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Temas de escritura</h2>
+                <p>11 unidades temáticas con actividades prácticas y proyectos de escritura</p>
+            </div>
+
+            <div class="sessions-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="badge badge-primary">Tema 1</span>
+                        <h4 class="mt-2">Escribir un perfil</h4>
+                        <p class="text-secondary mb-0">Presentación personal y profesional. Biografías y perfiles para diferentes contextos.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="temas/tema-01-perfil.html" class="btn btn-sm btn-outline">Ver tema</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <span class="badge badge-primary">Tema 2</span>
+                        <h4 class="mt-2">Cartas en el entorno laboral</h4>
+                        <p class="text-secondary mb-0">Comunicación formal escrita. Solicitudes, reclamaciones y correspondencia profesional.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="temas/tema-02-cartas.html" class="btn btn-sm btn-outline">Ver tema</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <span class="badge badge-primary">Tema 3</span>
+                        <h4 class="mt-2">Textos creativos</h4>
+                        <p class="text-secondary mb-0">Descripción de sensaciones. Valoraciones artísticas y expresión de emociones.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="temas/tema-03-creativos.html" class="btn btn-sm btn-outline">Ver tema</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <span class="badge badge-primary">Tema 4</span>
+                        <h4 class="mt-2">Textos de opinión</h4>
+                        <p class="text-secondary mb-0">Argumentación y persuasión. Expresión de puntos de vista fundamentados.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="temas/tema-04-opinion.html" class="btn btn-sm btn-outline">Ver tema</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <span class="badge badge-primary">Tema 5</span>
+                        <h4 class="mt-2">Textos expositivos</h4>
+                        <p class="text-secondary mb-0">Ser wikipedista. Redacción de textos informativos objetivos y bien documentados.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="temas/tema-05-expositivos.html" class="btn btn-sm btn-outline">Ver tema</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <span class="badge badge-primary">Tema 6</span>
+                        <h4 class="mt-2">Preparar una entrevista</h4>
+                        <p class="text-secondary mb-0">Formulación de preguntas. Técnicas para entrevistas periodísticas y académicas.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="temas/tema-06-entrevista.html" class="btn btn-sm btn-outline">Ver tema</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <span class="badge badge-primary">Tema 7</span>
+                        <h4 class="mt-2">Pros y contras académicos</h4>
+                        <p class="text-secondary mb-0">Estructura argumentativa balanceada. Presentación objetiva de diferentes posturas.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="temas/tema-07-proscontras.html" class="btn btn-sm btn-outline">Ver tema</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <span class="badge badge-primary">Tema 8</span>
+                        <h4 class="mt-2">Presentaciones especializadas</h4>
+                        <p class="text-secondary mb-0">Comunicación de especialidad. Textos técnicos y divulgativos sobre temas específicos.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="temas/tema-08-presentacion.html" class="btn btn-sm btn-outline">Ver tema</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="temas/index.html" class="btn btn-primary">Ver todos los temas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Talleres -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Talleres de escritura</h2>
+                <p>Proyectos creativos para aplicar lo aprendido en contextos reales</p>
+            </div>
+
+            <div class="sessions-grid">
+                <div class="card session-card">
+                    <div class="session-card-badge">Obligatorio</div>
+                    <div class="card-body">
+                        <span class="session-number">Taller 1</span>
+                        <h3 class="session-title">La mini serie web</h3>
+                        <p class="text-secondary">Creación colaborativa de guiones para una serie web. Desarrollo de personajes, diálogos y narrativa audiovisual.</p>
+                        <a href="talleres/taller-01-miniserie.html" class="btn btn-primary mt-2">Acceder al taller</a>
+                    </div>
+                </div>
+
+                <div class="card session-card">
+                    <div class="session-card-badge">Obligatorio</div>
+                    <div class="card-body">
+                        <span class="session-number">Taller 2</span>
+                        <h3 class="session-title">Olvidos de Granada</h3>
+                        <p class="text-secondary">Escritura creativa basada en la memoria y el patrimonio cultural. Textos narrativos y descriptivos sobre lugares y tradiciones.</p>
+                        <a href="talleres/taller-02-olvidos.html" class="btn btn-primary mt-2">Acceder al taller</a>
+                    </div>
+                </div>
+
+                <div class="card session-card">
+                    <div class="session-card-badge">Obligatorio</div>
+                    <div class="card-body">
+                        <span class="session-number">Taller 3</span>
+                        <h3 class="session-title">Safari fotográfico</h3>
+                        <p class="text-secondary">Escritura descriptiva y narrativa a partir de fotografías. Desarrollo de la observación y la expresión visual en palabras.</p>
+                        <a href="talleres/taller-03-safari.html" class="btn btn-primary mt-2">Acceder al taller</a>
+                    </div>
+                </div>
+
+                <div class="card session-card">
+                    <div class="session-card-badge">Obligatorio</div>
+                    <div class="card-body">
+                        <span class="session-number">Taller 4</span>
+                        <h3 class="session-title">Granada 2031, Capital Cultural</h3>
+                        <p class="text-secondary">Proyecto de escritura colaborativa para una candidatura cultural imaginaria. Textos promocionales y argumentativos.</p>
+                        <a href="talleres/taller-04-granada2031.html" class="btn btn-primary mt-2">Acceder al taller</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competencias -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Competencias que desarrollarás</h2>
+                <p>Un enfoque integral para dominar la producción escrita en español</p>
+            </div>
+
+            <div class="sessions-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Competencia lingüística</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                                <strong>Estructuras gramaticales</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">Consolidación de estructuras avanzadas: relativos, nominalizaciones, marcadores.</p>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                                <strong>Alcance del léxico</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">Vocabulario específico, formación de palabras, valores connotativos.</p>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>Corrección gramatical</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">Uso correcto de estructuras según nivel y tipología textual.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Competencia estratégica</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                                <strong>Conciencia lingüística</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">Atención a la forma en la producción de textos.</p>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                                <strong>Planificación</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">Técnicas y procedimientos efectivos para alcanzar objetivos.</p>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>Autoevaluación</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">Tests y corrección de errores para mejorar continuamente.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Competencia intercultural</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                                <strong>Actitud positiva</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">Valoración de la lengua, cultura y nuevos esquemas cognitivos.</p>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                                <strong>Perspectivas múltiples</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">Análisis de realidades desde diferentes puntos de vista.</p>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>Integración cultural</strong>
+                                <p class="text-secondary mb-0" style="font-size: 0.875rem;">La experiencia de inmersión como crecimiento personal.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Próxima sesión -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Próxima sesión</h2>
+                <p>Prepárate para la siguiente clase</p>
+            </div>
+
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <div class="card-header" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="font-size: 0.875rem; opacity: 0.8;">Sesión 1</span>
+                            <h3 style="margin: 0.5rem 0 0; color: white;">Introducción al curso y diagnóstico</h3>
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="badge" style="background: rgba(255,255,255,0.2); color: white;">Martes 03/02/2026</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4>Objetivos de la sesión</h4>
+                    <ul>
+                        <li>Presentación del curso, metodología y sistema de evaluación</li>
+                        <li>Actividad de diagnóstico: producción de un texto breve</li>
+                        <li>Introducción al proceso de escritura</li>
+                        <li>Reflexión sobre experiencias previas con la escritura en español</li>
+                    </ul>
+
+                    <div class="alert alert-info mt-3">
+                        <div class="alert-icon">i</div>
+                        <div class="alert-content">
+                            <strong>Preparación requerida:</strong> Trae un texto breve que hayas escrito en español recientemente (puede ser un email, un mensaje, una nota...) para analizar en clase.
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="sesiones/sesion-01.html" class="btn btn-primary">Ver sesión completa</a>
+                    <a href="calendario.html" class="btn btn-outline">Ver calendario</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white;">Comienza tu camino hacia la excelencia escrita</h2>
+            <p style="font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto var(--spacing-xl);">
+                Regístrate ahora y accede a todas las sesiones, actividades interactivas y recursos del curso.
+            </p>
+            <div class="hero-actions" style="justify-content: center;">
+                <a href="auth/registro.html" class="btn btn-accent btn-lg">Crear cuenta</a>
+                <a href="auth/login.html" class="btn btn-outline-white btn-lg">Ya tengo cuenta</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección del profesor y contacto -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tu profesor</h2>
+                <p>Contacta con el profesor para tutorías y consultas</p>
+            </div>
+            <div class="card" style="max-width: 700px; margin: 0 auto;">
+                <div class="card-body" style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                    <div style="width: 120px; height: 120px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; flex-shrink: 0;">
+                        JB
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h3 style="margin-bottom: 0.5rem;">Javier Benítez Láinez</h3>
+                        <p class="text-secondary" style="margin-bottom: 0.5rem;">Profesor de Producción Escrita</p>
+                        <p style="margin-bottom: 1rem;">
+                            <strong>Centro de Lenguas Modernas (CLM)</strong><br>
+                            Universidad de Granada
+                        </p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="mailto:benitezl@go.ugr.es" class="btn btn-primary">
+                                Contactar por email
+                            </a>
+                            <a href="mailto:benitezl@go.ugr.es?subject=Solicitud de tutoría - Producción Escrita C2" class="btn btn-outline">
+                                Solicitar tutoría
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Producción Escrita C2</h4>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">
+                        Curso intensivo de escritura avanzada en español para estudiantes de nivel C2.
+                    </p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; margin-top: 1rem;">
+                        <strong>Centro de Lenguas Modernas</strong><br>
+                        Universidad de Granada
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contenidos</h4>
+                    <ul>
+                        <li><a href="sesiones/index.html">Sesiones</a></li>
+                        <li><a href="temas/index.html">Temas</a></li>
+                        <li><a href="talleres/index.html">Talleres</a></li>
+                        <li><a href="recursos/index.html">Recursos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Estudiantes</h4>
+                    <ul>
+                        <li><a href="auth/login.html">Acceder</a></li>
+                        <li><a href="auth/registro.html">Registrarse</a></li>
+                        <li><a href="usuario/dashboard.html">Mi área</a></li>
+                        <li><a href="calendario.html">Calendario</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="mailto:benitezl@go.ugr.es">benitezl@go.ugr.es</a></li>
+                        <li><a href="mailto:benitezl@go.ugr.es?subject=Solicitud de tutoría">Solicitar tutoría</a></li>
+                        <li><a href="https://clm.ugr.es" target="_blank">CLM - UGR</a></li>
+                        <li><a href="admin/index.html">Área del profesor</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Javier Benítez Láinez. Todos los derechos reservados.</span>
+                <span>Desarrollado por Javier Benítez Láinez | CLM - Universidad de Granada</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>

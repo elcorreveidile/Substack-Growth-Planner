@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesiones | Producción Escrita C2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <span>Centro de Lenguas Modernas - Universidad de Granada</span>
+                <div class="header-top-links">
+                    <a href="../recursos/index.html">Recursos</a>
+                    <a href="../calendario.html">Calendario</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <a href="../index.html" class="logo">
+                    <div class="logo-icon">C2</div>
+                    <div class="logo-text">
+                        <span class="logo-title">Producción Escrita</span>
+                        <span class="logo-subtitle">CLM - Universidad de Granada</span>
+                    </div>
+                </a>
+                <nav class="nav-main" id="nav-main">
+                    <a href="../index.html">Inicio</a>
+                    <a href="index.html" class="active">Sesiones</a>
+                    <a href="../temas/index.html">Temas</a>
+                    <a href="../talleres/index.html">Talleres</a>
+                    <a href="../recursos/index.html">Recursos</a>
+                </nav>
+                <div class="nav-auth"></div>
+                <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: var(--spacing-2xl) 0;">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">27 Sesiones</span>
+                <h1>Programa del curso</h1>
+                <p class="hero-description">
+                    27 sesiones de 90 minutos cada una. Martes y jueves, desde el 3 de febrero hasta el 14 de mayo de 2026.
+                    Examen parcial: 26 de marzo. Examen final: 21 de mayo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progreso del curso -->
+    <section class="section">
+        <div class="container">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="margin: 0;">Progreso del curso</h3>
+                        <span id="progress-text">0 de 27 sesiones</span>
+                    </div>
+                    <div class="progress" style="height: 12px;">
+                        <div class="progress-bar" id="course-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                        <span style="font-weight: 500;">Filtrar por:</span>
+                        <button class="btn btn-sm btn-primary filter-btn active" data-filter="all">Todas</button>
+                        <button class="btn btn-sm btn-outline filter-btn" data-filter="tema">Por tema</button>
+                        <button class="btn btn-sm btn-outline filter-btn" data-filter="taller">Talleres</button>
+                        <button class="btn btn-sm btn-outline filter-btn" data-filter="febrero">Febrero</button>
+                        <button class="btn btn-sm btn-outline filter-btn" data-filter="marzo">Marzo</button>
+                        <button class="btn btn-sm btn-outline filter-btn" data-filter="abril">Abril</button>
+                        <button class="btn btn-sm btn-outline filter-btn" data-filter="mayo">Mayo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de sesiones -->
+            <div class="sessions-grid" id="sessions-container">
+                <!-- Las sesiones se generan con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding-top: 0;">
+                <span>&copy; 2026 Javier Benítez Láinez | CLM - Universidad de Granada</span>
+                <a href="mailto:benitezl@go.ugr.es" style="color: rgba(255,255,255,0.7);">benitezl@go.ugr.es</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('sessions-container');
+            const sessions = PE.CourseData.sessions;
+            const progress = PE.CourseData.getCourseProgress();
+
+            // Actualizar progreso
+            document.getElementById('course-progress').style.width = progress.percentage + '%';
+            document.getElementById('progress-text').textContent = `${progress.completed} de ${progress.total} sesiones`;
+
+            // Renderizar sesiones
+            function renderSessions(filter = 'all') {
+                let filteredSessions = sessions;
+
+                if (filter === 'taller') {
+                    filteredSessions = sessions.filter(s => s.theme === 'taller');
+                } else if (filter === 'tema') {
+                    filteredSessions = sessions.filter(s => s.theme !== 'taller');
+                } else if (filter === 'febrero') {
+                    filteredSessions = sessions.filter(s => s.date.includes('-02-'));
+                } else if (filter === 'marzo') {
+                    filteredSessions = sessions.filter(s => s.date.includes('-03-'));
+                } else if (filter === 'abril') {
+                    filteredSessions = sessions.filter(s => s.date.includes('-04-'));
+                } else if (filter === 'mayo') {
+                    filteredSessions = sessions.filter(s => s.date.includes('-05-'));
+                }
+
+                container.innerHTML = filteredSessions.map(session => {
+                    const isPast = new Date(session.date) < new Date();
+                    const isCurrent = session.id === PE.CourseData.getCurrentSession().id;
+                    const isWorkshop = session.theme === 'taller';
+
+                    let badgeClass = '';
+                    let badgeText = '';
+                    if (isCurrent) {
+                        badgeClass = 'current';
+                        badgeText = 'Actual';
+                    } else if (isPast) {
+                        badgeClass = 'completed';
+                        badgeText = 'Completada';
+                    }
+
+                    return `
+                        <div class="card session-card" data-month="${session.date.split('-')[1]}" data-type="${isWorkshop ? 'taller' : 'tema'}">
+                            ${badgeText ? `<div class="session-card-badge ${badgeClass}">${badgeText}</div>` : ''}
+                            <div class="card-body">
+                                <span class="session-number">Sesión ${session.id}</span>
+                                <h3 class="session-title">${session.title}</h3>
+                                <p class="session-date">
+                                    ${session.day}, ${PE.Utils.formatDate(session.date, 'long')}
+                                </p>
+                                ${isWorkshop ? `
+                                    <span class="badge badge-secondary mt-2">Taller ${session.workshop}</span>
+                                ` : session.content ? `
+                                    <div class="session-objectives">
+                                        <h4>Contenidos:</h4>
+                                        <ul>
+                                            ${session.content.slice(0, 2).map(cId => {
+                                                const content = PE.CourseData.contents.find(c => c.id === cId);
+                                                return content ? `<li>${content.title}</li>` : '';
+                                            }).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            <div class="card-footer">
+                                <a href="sesion-${String(session.id).padStart(2, '0')}.html" class="btn btn-sm ${isCurrent ? 'btn-primary' : 'btn-outline'}">
+                                    ${isPast ? 'Revisar' : isCurrent ? 'Ir a la sesión' : 'Ver detalles'}
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            renderSessions();
+
+            // Filtros
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('active', 'btn-primary');
+                        b.classList.add('btn-outline');
+                    });
+                    btn.classList.add('active', 'btn-primary');
+                    btn.classList.remove('btn-outline');
+                    renderSessions(btn.dataset.filter);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
